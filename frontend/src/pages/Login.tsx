@@ -28,7 +28,7 @@ export default function Login(){
 
     return (
         <form onSubmit={onSubmit} noValidate className="mx-auto mt-10 max-w-sm space-y-4 rounded border p-6">
-        <h1 className="text-2xl font-bold">Crear cuenta</h1>
+        <h1 className="text-2xl font-bold">Iniciar Sesión</h1>
         <Field label="Correo">
         <input name="email" type="email" value={form.email} onChange={onChange} required />
         </Field>
@@ -38,7 +38,7 @@ export default function Login(){
         </Field>
         {error && <Alert>{error}</Alert>}
         <button type="submit" className="w-full">Entrar</button>
-        <p className="text-sm">¿No tienes cuenta? <Link to="/login" className="text-blue-600 underline">Inicia sesión</Link></p>
+        <p className="text-sm">¿No tienes cuenta? <Link to="/register" className="text-blue-600 underline">Crear Cuenta</Link></p>
     </form>
 
     );
