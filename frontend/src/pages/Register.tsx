@@ -32,7 +32,7 @@ export default function Register(){
             navigate("/login");
         } catch (err) {
         setError(apiError(err).message);
-}
+    }
 };
 return (
     <form onSubmit={onSubmit} noValidate className="mx-auto mt-10 max-w-sm space-y-4 rounded border p-6">
