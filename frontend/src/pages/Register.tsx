@@ -17,7 +17,7 @@ export default function Register(){
         const e: Record<string, string> = {};
         const name = form.name.trim();
         if(!name || name.length>100) e.name = "Ingresa un nombre de hasta 100 caracteres";
-        if (!/^[^\s@]+@[^\s@]+.[^\s@]+$/.test(form.email)) e.email = "Ingresa un correo válido.";
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) e.email = "Ingresa un correo válido.";
         if (form.password.length < 8 || form.password.length > 72) e.password = "La contraseña debe tener de 8 a 72 caracteres.";
     return e;
 };
@@ -48,7 +48,7 @@ return (
         </Field>
         {error && <Alert>{error}</Alert>}
         <button type="submit" className="w-full">Registrarme</button>
-        <p className="text-sm">¿Ya tienes cuenta? <Link to="/login" className="text-blue-600 underline">Inicia sesión</Link></p>
+        <p className="text-sm">¿Ya tienes cuenta? <Link to="/login" className="text-green-600 underline">Inicia sesión</Link></p>
     </form>
 );
 }

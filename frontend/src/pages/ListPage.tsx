@@ -10,8 +10,9 @@ export type Page<T> = { items: T[]; page: number; size: number; totalItems: numb
 type ListPageProps<T> = { path: string; title: string; render: (item: T) => ReactNode };
 
 export default function ListPage<T extends { id: number }>({ path, title, render }: ListPageProps<T>) {
-    const [page, setPage] = useState(1);
-    const { data, loading, error, reload } = useFetch<Page<T>>(`${path}?page=${page}\\\&size=5`);
+    const [page, setPage] = useState(0);
+    const { data, loading, error, reload } = useFetch<Page<T>>(`${path}?page=${page}&size=5`);
+    
     return (
         <section className="space-y-4">
         <h1 className="text-2xl font-bold">{title}</h1>

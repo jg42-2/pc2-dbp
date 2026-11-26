@@ -5,7 +5,10 @@ export default function PrivateLayout (){
     const navigate = useNavigate();
     if (!localStorage.getItem("token")) return <Navigate to= "/login" replace/>
 
-    const logout = () => {localStorage.removeItem("token")}; navigate("/login");
+   const logout = () => {
+  localStorage.removeItem("token");
+  navigate("/login");
+};
 
     return(
         <div className="mx-auto max-w-3xl space-y-4 p-4">

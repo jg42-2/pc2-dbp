@@ -1,7 +1,7 @@
 import axios from "axios";
 import type { AxiosError, InternalAxiosRequestConfig } from "axios";
 import { useEffect, useState } from "react";
-export const API_URL = "https://bibliotecaactiva-api.aaron-navarro.workers.dev/api";
+export const API_URL = "https://bibliotecaactiva-api.aaron-navarro.workers.dev";
 
 
 export const api = axios.create({ baseURL: API_URL + "/api" });

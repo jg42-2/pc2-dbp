@@ -31,7 +31,7 @@ return (
 export function DetailPage() {
     const { id } = useParams();
     const { data, loading, error, reload } = useFetch<Detail>(`${PATH}/${id}`);
-    const [form, setForm] = useState({ attendees: "" });
+    const [form, setForm] = useState({ days: "" });
     const [errors, setErrors] = useState<Record<string, string>>({});
     const [result, setResult] = useState("");
     const [apiErr, setApiErr] = useState("");
@@ -41,8 +41,8 @@ export function DetailPage() {
     setForm({ ...form, [e.target.name]: e.target.value });
     const validate = () => {
     const e: Record<string, string> = {};
-    const n = Number(form.attendees);
-    if (form.attendees === "" || !Number.isInteger(n) || n < MIN || n > MAX)
+    const n = Number(form.days);
+    if (form.days === "" || !Number.isInteger(n) || n < MIN || n > MAX)
     e.attendees = `Ingresa un número entero entre ${MIN} y ${MAX}.`;
     return e;
 };
@@ -55,9 +55,9 @@ export function DetailPage() {
     if (Object.keys(e).length > 0) return;
     setSending(true);
 try {
-await api.post(`${PATH}/${id}/loans`, { attendees: Number(form.attendees) });
+await api.post(`${PATH}/${id}/loans`, { days: Number(form.days) });
     setResult("Reserva confirmada.");
-    setForm({ attendees: "" });
+    setForm({ days: "" });
     reload(); 
 } catch (err) {
     const x = apiError(err);
@@ -75,7 +75,7 @@ return (
 <p>Autor: {data.author} · Categoria: {data.category} · Copias disponibles: {data.availableCopies}</p>
 <form onSubmit={onSubmit} noValidate className="space-y-3 rounded border p-4">
 <Field label="Número de asistentes" error={errors.attendees}>
-<input name="attendees" type="number" min={MIN} max={MAX} step={1} value={form.attendees} onChange={onChange} />
+<input name="attendees" type="number" min={MIN} max={MAX} step={1} value={form.days} onChange={onChange} />
 </Field>
 {apiErr && <Alert>{apiErr}</Alert>}
 {result && <Alert ok>{result}</Alert>}
@@ -86,8 +86,8 @@ return (
 );
 }
 function MyLoansPage() {
-const { data, loading, error, reload } = useFetch<Loan[]>("/me/loans");
-const [msg, setMsg] = useState("");
+    const { data, loading, error, reload } = useFetch<Loan[]>("/me/loans");
+    const [msg, setMsg] = useState("");
 const [apiErr, setApiErr] = useState("");
 const cancel = async (l: Loan) => {
 if (!window.confirm(`¿Cancelar la reserva #${l.id} de ${l.resourceName}?`)) return;
